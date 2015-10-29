@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HBCustomNumberPadView : UIView
+@interface HBCustomNumberPadView : UIView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) UITextField* textField;
 @end

@@ -21,6 +21,10 @@
     CGFloat _width;
     NSArray* _nums ;
     NSArray* _letters;
+    NSTimer* _timer;
+    UIButton* _delBtn;
+    UIImage* _normalBg;
+    UIImage* _hlBg;
     
 }
 -(instancetype)init
@@ -38,7 +42,8 @@
         self.backgroundColor = LINE_COLOR;
         _nums = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"];
         _letters = @[@"",@"ABC",@"DEF",@"GHI",@"JKL",@"MNO",@"PQRS",@"TUV",@"WXYZ"];
-        
+         _hlBg = [self imageWithColor:HL_COLOR];
+        _normalBg = [self imageWithColor:BG_COLOR];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                 [self createButtonAtX:i Y:j];
@@ -54,10 +59,8 @@
     button.backgroundColor = BG_COLOR;
     [button setTitleColor:TEXT_COLOR forState:UIControlStateNormal];
     
-    UIImage* hLImage = [self imageWithColor:HL_COLOR];
-    UIImage* whiteImage = [self imageWithColor:BG_COLOR];
     
-    [button setBackgroundImage:hLImage forState:UIControlStateHighlighted];
+    [button setBackgroundImage:_hlBg forState:UIControlStateHighlighted];
     
     int index = x + y * 3;
     button.tag = index + 1;
@@ -67,15 +70,19 @@
     }else{
         if (x == 0) {
             button.backgroundColor = HL_COLOR;
-            [button setBackgroundImage:whiteImage forState:UIControlStateHighlighted];
+            [button setBackgroundImage:_normalBg forState:UIControlStateHighlighted];
             [button setTitle:ADDITION_TITLE forState:UIControlStateNormal];
             
         }else if(x == 1){
             [button setTitle:@"0" forState:UIControlStateNormal];
         } else{
             button.backgroundColor = HL_COLOR;
-            [button setBackgroundImage:whiteImage forState:UIControlStateHighlighted];
+            [button setBackgroundImage:_normalBg forState:UIControlStateHighlighted];
             [button setImage:[UIImage imageNamed:@"DelImage"]  forState:UIControlStateNormal];
+            UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longClick:)];
+            longPress.delegate = self;
+            [button addGestureRecognizer:longPress];
+            _delBtn = button;
         }
     }
         //减去两条线的宽度
@@ -120,6 +127,7 @@
         self.textField.text = [self.textField.text stringByAppendingString:[NSString stringWithFormat:@"%@",ADDITION_TITLE]];
     }//回退
     else if(sender.tag == 12){
+       
         if (self.textField.text.length != 0){
             self.textField.text = [self.textField.text substringToIndex:self.textField.text.length -1];
         }
@@ -146,5 +154,33 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+-(void)longClick:(UIGestureRecognizer*)sender
+{
+    
+    if (UIGestureRecognizerStateBegan == sender.state) {
+        [_delBtn setBackgroundImage:_normalBg forState:UIControlStateNormal];
+
+        [_timer invalidate];
+        _timer = nil;
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(del) userInfo:nil repeats:YES];
+        
+    }else if(UIGestureRecognizerStateEnded == sender.state){
+        [_timer invalidate];
+        _timer = nil;
+        _delBtn.highlighted = NO;
+        [_delBtn setBackgroundImage:_hlBg forState:UIControlStateNormal];
+    }
+    
+}
+
+-(void)del
+{
+    if (self.textField.text.length > 0){
+            self.textField.text = [self.textField.text substringToIndex:self.textField.text.length -1];
+    }else{
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 @end
