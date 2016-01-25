@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ABB21CE1C314DAE00F17DFF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB21CD1C314DAE00F17DFF /* CFNetwork.framework */; };
 		0ACF12BC1BDBD4C200FFB8E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF12BB1BDBD4C200FFB8E6 /* main.m */; };
 		0ACF12BF1BDBD4C200FFB8E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF12BE1BDBD4C200FFB8E6 /* AppDelegate.m */; };
 		0ACF12C21BDBD4C200FFB8E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF12C11BDBD4C200FFB8E6 /* ViewController.m */; };
@@ -32,7 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0ABB21CD1C314DAE00F17DFF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0ACF12B61BDBD4C100FFB8E6 /* HBCustomNumeberPadViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBCustomNumeberPadViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACF12BA1BDBD4C200FFB8E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ACF12BB1BDBD4C200FFB8E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ABB21CE1C314DAE00F17DFF /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +72,6 @@
 		0ACF12AD1BDBD4C100FFB8E6 = {
 			isa = PBXGroup;
 			children = (
-				0ABB21CD1C314DAE00F17DFF /* CFNetwork.framework */,
 				0ACF12B81BDBD4C100FFB8E6 /* HBCustomNumeberPadViewDemo */,
 				0ACF12D21BDBD4C200FFB8E6 /* HBCustomNumeberPadViewDemoTests */,
 				0ACF12B71BDBD4C100FFB8E6 /* Products */,
